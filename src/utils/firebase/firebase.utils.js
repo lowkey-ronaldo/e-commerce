@@ -1,12 +1,10 @@
 import { initializeApp } from "firebase/app";
-
 import {
     getAuth,
     signInWithRedirect,
     signInWithPopup,
     GoogleAuthProvider
 } from 'firebase/auth';
-
 import {
     getFirestore,
     doc,
@@ -22,10 +20,10 @@ const firebaseConfig = {
     storageBucket: "e-commerce-2022-ccd1f.appspot.com",
     messagingSenderId: "188811102920",
     appId: "1:188811102920:web:d5bdbd61ff8dcd024d33fd"
-  };
-  
-  // Initialize Firebase
-  const firebaseApp = initializeApp(firebaseConfig);
+};
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
 
@@ -43,17 +41,17 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 
     const userSnapshot = await getDoc(userDocRef);
 
-    if(!userSnapshot.exists()){
-        const {displayName, email} = userAuth;
+    if (!userSnapshot.exists()) {
+        const { displayName, email } = userAuth;
         const createdAt = new Date();
 
-        try{
+        try {
             await setDoc(userDocRef, {
                 displayName,
                 email,
                 createdAt
             });
-        }catch(error){
+        } catch (error) {
             console.log('error creating the user', error.message);
         }
     }

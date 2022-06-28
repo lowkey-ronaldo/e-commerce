@@ -1,10 +1,9 @@
 import './product-card.styles.scss';
-
 import "../button/button.styles.scss";
-
 import { useContext } from 'react';
-
 import { CartContext } from '../../contexts/cart.context';
+
+// Componente utilizzato nella pagina Shop
 
 const ProductCard = ({ product }) => {
 
