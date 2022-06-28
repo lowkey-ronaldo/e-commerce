@@ -3,7 +3,7 @@ import "../button/button.styles.scss";
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 
-// Componente utilizzato nella pagina Shop
+// Componente utilizzato nella pagina Shop e derivati: serve per aggiungere prodotti al carrello.
 
 const ProductCard = ({ product }) => {
 

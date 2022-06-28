@@ -10,6 +10,8 @@ import Checkout from './routes/checkout/checkout.component';
 
 // Home viene caricata con Navigation se è SOLO presente "/", altrimenti non è visibile.
 
+// Checkout sarebbe il riepilogo
+
 const App = () => {
   return (
     <Routes>

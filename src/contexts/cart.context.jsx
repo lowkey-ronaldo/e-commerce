@@ -55,6 +55,8 @@ export const CartProvider = ({ children }) => {
     const [cartCount, setCartCount] = useState(0);
     const [cartTotal, setCartTotal] = useState(0);
 
+//  Conta quanti elementi inseriso nel carrello, e li mostra nell'icona del carrello.
+//  useEffect viene scatenato quando cambia cartItems
     useEffect(() => {
         const newCartCount = cartItems.reduce((total, cartItem) => {
             return total + cartItem.quantity

@@ -1,5 +1,7 @@
 import './cart-item.styles.scss';
 
+// Component che verrà caricato nel CartDropdown
+
 const CartItem = ({ cartItem }) => {
     const { name, quantity, imageUrl, price } = cartItem
     return (
