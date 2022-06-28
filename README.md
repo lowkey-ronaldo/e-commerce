@@ -1,1 +1,1 @@
-# e-commerce
+# e-commerce usando React e Firebase
