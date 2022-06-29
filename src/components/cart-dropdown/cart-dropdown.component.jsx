@@ -2,14 +2,16 @@ import './cart-dropdown.styles.scss';
 
 import { useContext } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
 import { CartContext } from '../../contexts/cart.context';
 import CartItem from '../cart-item/cart-item.component';
+
+import { useNavigate } from 'react-router-dom';
 
 const CartDropdown = () => {
 
     const { cartItems } = useContext(CartContext);
+
+    // Navigate ha la stessa funzione di Link
     const navigate = useNavigate();
 
     const goToCheckoutHandler = () => {
