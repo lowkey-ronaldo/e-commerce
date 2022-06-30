@@ -1,5 +1,7 @@
 import './category-item.styles.scss';
 
+// Componente usato da Directory
+
 const CategoryItem = ({ category }) => {
     const { title, imageUrl } = category;
     return (
