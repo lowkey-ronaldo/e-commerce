@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import useFirebase from '../hook/useFirebase';
 
 const addCartItem = (cartItems, productToAdd) => {
     // Cerca se cartItems contiene productToAdd
