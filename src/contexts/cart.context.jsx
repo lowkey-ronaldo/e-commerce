@@ -52,12 +52,24 @@ export const CartContext = createContext({
 
 export const CartProvider = ({ children }) => {
     const [isCartOpen, setIsCartOpen] = useState(false);
-    const [cartItems, setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
     const [cartTotal, setCartTotal] = useState(0);
 
+    // Codice relativo al localStorage
+    const [cartItems, setCartItems] = useState(() => {
+        const saved = localStorage.getItem("cartItems");
+        const initialValue = JSON.parse(saved);
+        return initialValue || [];
+    });
+
+   useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems))
+   }, [cartItems])
+
+
     //  Conta quanti elementi inseriso nel carrello, e li mostra nell'icona del carrello.
     //  useEffect viene scatenato quando cambia cartItems
+
     useEffect(() => {
         const newCartCount = cartItems.reduce((total, cartItem) => {
             return total + cartItem.quantity
