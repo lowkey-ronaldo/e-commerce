@@ -11,9 +11,11 @@ import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component
 import { UsersContext } from "../../contexts/users.context";
 
 const Navigation = () => {
+
   const { isCartOpen, setCartCount, setCartItems } = useContext(CartContext);
   const { isLogged, setIsLogged } = useContext(UsersContext);
   const { loggedUser, setLoggedUser } = useContext(UsersContext);
+
   const navigate = useNavigate();
 
   const onLogoutHandler = (e) => {
@@ -33,8 +35,6 @@ const Navigation = () => {
       setLoggedUser(localStorage.getItem("user"))
     }
   }, []);
-
-  // isCartOpen viene modificato in CartIcon, il suo valore è salvato nello store.
 
   return (
     <Fragment>

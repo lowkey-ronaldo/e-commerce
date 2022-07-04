@@ -20,9 +20,8 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!localStorage.getItem("isLogged")){
+    if(!localStorage.getItem("")){
       navigate('/login');
-      console.log("non sei loggato");
     }
   }, [])
 
