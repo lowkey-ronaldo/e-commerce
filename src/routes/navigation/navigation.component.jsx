@@ -1,43 +1,74 @@
-import { Fragment, useContext } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Fragment, useContext, useEffect } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 
-import {ReactComponent as CrwnLogo} from '../../assets/crown.svg';
-import './navigation.styles.scss';
+import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
+import "./navigation.css";
 
-import {CartContext} from '../../contexts/cart.context';
+import { CartContext } from "../../contexts/cart.context";
 
-import CartIcon from '../../components/cart-icon/cart-icon.component';
-import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
+import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import { UsersContext } from "../../contexts/users.context";
 
 const Navigation = () => {
+  const { isCartOpen, setCartCount, setCartItems } = useContext(CartContext);
+  const { isLogged, setIsLogged } = useContext(UsersContext);
+  const { loggedUsers, setLoggedUsers } = useContext(UsersContext);
+  const navigate = useNavigate();
 
-    const {isCartOpen} = useContext(CartContext);
+  const onLogoutHandler = (e) => {
+    e.preventDefault();
+    setCartCount(0);
+    setCartItems([]);
+    setIsLogged(false);
+    console.log(isLogged);
+    localStorage.removeItem("isLogged");
+    localStorage.removeItem("cartItems");
+    navigate("/login");
+  };
 
-    // isCartOpen viene modificato in CartIcon, il suo valore è salvato nello store.
+  useEffect(() => {
+    if (!localStorage.getItem("isLogged")) {
+      navigate("/login");
+      console.log("non sei loggato");
+    }else{
+      setLoggedUsers(localStorage.getItem("user"))
+    }
+  }, []);
 
-    return (
-        <Fragment>
-            <div className='navigation'>
-                <Link className='logo-container' to='/' >
-                    <CrwnLogo className='logo' />
-                </Link>
-                <div className='nav-links-container' >
-                    <Link className='nav-link' to='/shop' >
-                        SHOP
-                    </Link>
-                    <Link className='nav-link' to='/sign-in' >
-                        SIGN IN
-                    </Link>
-                    <CartIcon/>
-                </div>
-                { isCartOpen && <CartDropdown/>}
+  // isCartOpen viene modificato in CartIcon, il suo valore è salvato nello store.
+
+  return (
+    <Fragment>
+      <div className="navigation">
+        {isLogged && (
+          <>
+            <Link className="logo-container" to="/">
+              <CrwnLogo className="logo" />
+            </Link>
+            <div className="login10">{loggedUsers}</div>
+
+            <div className="nav-links-container">
+              <Link className="nav-link" to="/shop">
+                SHOP
+              </Link>
+              <Link className="nav-link" to="/login" onClick={onLogoutHandler}>
+                LOGOUT
+              </Link>
+              <CartIcon />
             </div>
-            {/* An Outlet should be used in parent route elements to render their child route elements.
+          </>
+        )}
+
+        {isCartOpen && <CartDropdown />}
+      </div>
+
+      {/* An Outlet should be used in parent route elements to render their child route elements.
             This allows nested UI to show up when child routes are rendered. 
             If the parent route matched exactly, it will render a child index route or nothing if there is no index route. */}
-            <Outlet />
-        </Fragment>
-    )
-}
+      <Outlet />
+    </Fragment>
+  );
+};
 
 export default Navigation;
