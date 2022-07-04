@@ -17,7 +17,6 @@ import {useNavigate} from "react-router-dom"
 
 const App = () => {
 
-  const {isLogged} = useContext(UsersContext)
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import { Fragment, useContext, useEffect } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
-import "./navigation.css";
+import "./navigation.style.css";
 
 import { CartContext } from "../../contexts/cart.context";
 
@@ -13,7 +13,7 @@ import { UsersContext } from "../../contexts/users.context";
 const Navigation = () => {
   const { isCartOpen, setCartCount, setCartItems } = useContext(CartContext);
   const { isLogged, setIsLogged } = useContext(UsersContext);
-  const { loggedUsers, setLoggedUsers } = useContext(UsersContext);
+  const { loggedUser, setLoggedUser } = useContext(UsersContext);
   const navigate = useNavigate();
 
   const onLogoutHandler = (e) => {
@@ -21,7 +21,6 @@ const Navigation = () => {
     setCartCount(0);
     setCartItems([]);
     setIsLogged(false);
-    console.log(isLogged);
     localStorage.removeItem("isLogged");
     localStorage.removeItem("cartItems");
     navigate("/login");
@@ -30,9 +29,8 @@ const Navigation = () => {
   useEffect(() => {
     if (!localStorage.getItem("isLogged")) {
       navigate("/login");
-      console.log("non sei loggato");
     }else{
-      setLoggedUsers(localStorage.getItem("user"))
+      setLoggedUser(localStorage.getItem("user"))
     }
   }, []);
 
@@ -46,7 +44,7 @@ const Navigation = () => {
             <Link className="logo-container" to="/">
               <CrwnLogo className="logo" />
             </Link>
-            <div className="login10">{loggedUsers}</div>
+            <div className="loggedUser">{loggedUser}</div>
 
             <div className="nav-links-container">
               <Link className="nav-link" to="/shop">

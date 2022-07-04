@@ -4,8 +4,8 @@ export const UsersContext = createContext({
   users: [],
   onSubmitHandler: () => {},
   isLogged: false,
-  loggedUsers: "",
-  setLoggedUsers: () => {}
+  loggedUser: "",
+  setLoggedUser: () => {}
 });
 
 export const UsersProvider = ({ children }) => {
@@ -15,7 +15,7 @@ export const UsersProvider = ({ children }) => {
   const [fetchUsers, setFetchUsers] = useState([]);
   const [users, setUsers] = useState(fetchUsers);
   const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"));
-  const [loggedUsers, setLoggedUsers] = useState("");
+  const [loggedUser, setLoggedUser] = useState("");
 
   useEffect(() => {
     fetch(urlUsers)
@@ -27,17 +27,22 @@ export const UsersProvider = ({ children }) => {
     setUsers(fetchUsers);
   }, [fetchUsers]);
 
-  const onSubmitHandler = (value) => {
+  // Funzione responsabile di cercare se esiste il codice cliente nel database
+  const onSubmitHandler = (input) => {
     const user = users.find((user) => {
-      return user.codiceCliente === value;
+      return user.codiceCliente === input;
     });
+
     if(user !== undefined) {
-      
-      setLoggedUsers(user.nome);
+      setLoggedUser(user.nome);
+      setIsLogged(true);
       localStorage.setItem("isLogged", true);
       localStorage.setItem("user", user.nome)
-      setIsLogged(true);
     } 
+    else{
+      alert("Codice cliente sbagliato")
+    }
+    
     return user;
   };
 
@@ -45,8 +50,8 @@ export const UsersProvider = ({ children }) => {
                   onSubmitHandler, 
                   isLogged, 
                   setIsLogged, 
-                  loggedUsers, 
-                  setLoggedUsers 
+                  loggedUser, 
+                  setLoggedUser 
                 };
 
   return (
