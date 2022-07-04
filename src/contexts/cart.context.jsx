@@ -55,7 +55,7 @@ export const CartProvider = ({ children }) => {
     const [cartCount, setCartCount] = useState(0);
     const [cartTotal, setCartTotal] = useState(0);
 
-    // Codice relativo al localStorage
+    // Codice relativo al local storage: GET e SET
     const [cartItems, setCartItems] = useState(() => {
         const saved = localStorage.getItem("cartItems");
         const initialValue = JSON.parse(saved);
