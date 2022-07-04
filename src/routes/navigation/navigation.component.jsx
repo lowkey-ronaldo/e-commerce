@@ -30,6 +30,7 @@ const Navigation = () => {
 
   useEffect(() => {
     if (!localStorage.getItem("isLogged")) {
+      
       navigate("/login");
     }else{
       setLoggedUser(localStorage.getItem("user"))

@@ -20,7 +20,7 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!localStorage.getItem("")){
+    if(!localStorage.getItem("user")){
       navigate('/login');
     }
   }, [])
