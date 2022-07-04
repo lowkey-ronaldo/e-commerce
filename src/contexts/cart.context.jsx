@@ -59,7 +59,7 @@ export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState(() => {
         const saved = localStorage.getItem("cartItems");
         const initialValue = JSON.parse(saved);
-        return initialValue;
+        return initialValue || [] ;
     });
 
    useEffect(() => {
