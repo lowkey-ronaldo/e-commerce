@@ -1,12 +1,10 @@
 import { createContext, useState, useEffect } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
-
     // Cerca se cartItems contiene productToAdd
     const existingCartItem = cartItems.find(
         (cartItem) => cartItem.id === productToAdd.id
     );
-    
     // Se trovato, incrementa la quantità
     if (existingCartItem) {
         return cartItems.map((cartItem) =>
@@ -63,7 +61,11 @@ export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState(() => {
         const saved = localStorage.getItem("cartItems");
         const initialValue = JSON.parse(saved);
-        return initialValue || [] ;
+        if(initialValue !== null){
+            return initialValue;
+        } else{
+            return [];
+        }
     });
 
    useEffect(() => {
@@ -73,7 +75,6 @@ export const CartProvider = ({ children }) => {
 
     //  Conta quanti elementi inseriso nel carrello, e li mostra nell'icona del carrello.
     //  useEffect viene scatenato quando cambia cartItems
-
     useEffect(() => {
         const newCartCount = cartItems.reduce((total, cartItem) => {
             return total + cartItem.quantity

@@ -10,11 +10,11 @@ export const CategoriesProvider = ({children}) => {
     const [fetchProducts, setFetchProducts] = useState({});
     const [categoriesMap, setCategories] = useState(fetchProducts);
     
-    const url =
+    const urlCategories =
       "https://e-commerce-titoli-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
   
     useEffect(() => {
-      fetch(url)
+      fetch(urlCategories)
         .then((resp) => resp.json())
         .then((PRODUCTS) => setFetchProducts(PRODUCTS));
     }, []);
