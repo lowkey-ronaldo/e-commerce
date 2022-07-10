@@ -8,6 +8,7 @@ import CartItem from "../cart-item/cart-item.component";
 import { useNavigate } from "react-router-dom";
 
 const CartDropdown = () => {
+  
   const { cartItems } = useContext(CartContext);
 
   // Navigate ha la stessa funzione di Link
