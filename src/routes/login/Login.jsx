@@ -19,7 +19,7 @@ const Login = () => {
   return (
     <div>
       <form onSubmit={checkUserHandler}>
-        <input type="password" placeholder="Inserisci password" onChange={e => setInput(e.target.value)}/>
+        <input type="password" placeholder="Inserisci password" onChange={(e) => setInput(e.target.value)}/>
         <button type="submit">Login</button>
       </form>
     </div>

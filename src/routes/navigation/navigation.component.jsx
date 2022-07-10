@@ -8,11 +8,13 @@ import { CartContext } from "../../contexts/cart.context";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+
 import { UsersContext } from "../../contexts/users.context";
 
 const Navigation = () => {
 
   const { isCartOpen, setCartCount, setCartItems } = useContext(CartContext);
+
   const { isLogged, setIsLogged } = useContext(UsersContext);
   const { loggedUser, setLoggedUser } = useContext(UsersContext);
 
@@ -25,17 +27,15 @@ const Navigation = () => {
     setIsLogged(false);
     localStorage.removeItem("isLogged");
     localStorage.removeItem("cartItems");
+    localStorage.removeItem("loggedUser");
+    localStorage.removeItem("id");
     navigate("/login");
   };
 
   useEffect(() => {
-    if (!localStorage.getItem("isLogged")) {
-      
-      navigate("/login");
-    }else{
-      setLoggedUser(localStorage.getItem("user"))
-    }
-  }, []);
+    setLoggedUser(localStorage.getItem("loggedUser"))
+  }, [])
+
 
   return (
     <Fragment>

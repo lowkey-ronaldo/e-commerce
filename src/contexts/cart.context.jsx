@@ -1,10 +1,12 @@
 import { createContext, useState, useEffect } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
+
     // Cerca se cartItems contiene productToAdd
     const existingCartItem = cartItems.find(
         (cartItem) => cartItem.id === productToAdd.id
     );
+    
     // Se trovato, incrementa la quantità
     if (existingCartItem) {
         return cartItems.map((cartItem) =>

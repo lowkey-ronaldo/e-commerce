@@ -6,6 +6,7 @@ export const CategoriesContext = createContext({
 
 export const CategoriesProvider = ({children}) => {
 
+  // In categoriesMap ho un ogetto con array di oggetti come valori
     const [fetchProducts, setFetchProducts] = useState({});
     const [categoriesMap, setCategories] = useState(fetchProducts);
     

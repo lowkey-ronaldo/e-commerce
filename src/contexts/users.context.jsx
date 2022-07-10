@@ -9,11 +9,14 @@ export const UsersContext = createContext({
 });
 
 export const UsersProvider = ({ children }) => {
+
   const urlUsers =
     "https://stage-app-109c7-default-rtdb.europe-west1.firebasedatabase.app/credentials.json";
 
   const [fetchUsers, setFetchUsers] = useState([]);
   const [users, setUsers] = useState(fetchUsers);
+
+  // Usati nel local storage
   const [isLogged, setIsLogged] = useState(localStorage.getItem("isLogged"));
   const [loggedUser, setLoggedUser] = useState("");
 
@@ -37,7 +40,7 @@ export const UsersProvider = ({ children }) => {
       setLoggedUser(user.nome);
       setIsLogged(true);
       localStorage.setItem("isLogged", true);
-      localStorage.setItem("user", user.nome)
+      localStorage.setItem("loggedUser", user.nome)
     } 
     else{
       alert("Codice cliente sbagliato")

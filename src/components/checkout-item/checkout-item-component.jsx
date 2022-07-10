@@ -7,6 +7,7 @@ import './checkout-item.styles.scss';
 // Viene usato dalla pagina Checkout
 
 const CheckoutItem = ({ cartItem }) => {
+  
   const { name, imageUrl, price, quantity } = cartItem;
 
   const { clearItemFromCart, addItemToCart, removeItemFromCart } = useContext(CartContext);

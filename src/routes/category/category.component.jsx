@@ -10,6 +10,7 @@ import "./category.styles.scss";
 const Category = () => {
   const { category } = useParams();
   const { categoriesMap } = useContext(CategoriesContext);
+  // in products ho l'array di oggetti del singolo titolo
   const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
